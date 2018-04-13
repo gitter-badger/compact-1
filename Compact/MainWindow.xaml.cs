@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace Compact
 {
@@ -30,14 +31,12 @@ namespace Compact
             }
         }
 
-        private Canvas CreateBundleEntry(BundleEntry entry)
+        private Canvas CreateBundleEntry(Bundle bundleEntry)
         {
             Canvas mainCanvas = new Canvas()
             {
                 Width = 350,
                 Height = 90,
-                Background = new ImageBrush((ImageSource) new ImageSourceConverter()
-                    .ConvertFromString(entry.BackgroundImage.AbsoluteUri)),
                 Effect = new DropShadowEffect()
                 {
                     BlurRadius = 20,
@@ -46,27 +45,37 @@ namespace Compact
                 }
             };
 
-            TextBlock nameLabel = new TextBlock()
-            {                
-                Text = entry.Name,
-                TextWrapping = TextWrapping.NoWrap,
-                TextTrimming = TextTrimming.CharacterEllipsis,
-                Width = 320,
-                Height = 90,
-                Foreground = entry.ForegroundColor,
-                FontFamily = new FontFamily("Segoe UI Semilight"),
-                FontSize = 24.0
-            };
+            try
+            {
+                mainCanvas.Background = new ImageBrush((ImageSource)new ImageSourceConverter()
+                    .ConvertFromString(bundleEntry.BannerUrl));
+            }
+            catch (Exception)
+            {
+                mainCanvas.Background = new SolidColorBrush(Color.FromRgb(38, 38, 38));
+            }
 
             mainCanvas.Margin = new Thickness(15);
-            mainCanvas.Children.Add(nameLabel);
             return mainCanvas;
         }
 
         private void OnWindowLoad(object sender, RoutedEventArgs e)
         {
-            // TO-DO: Pass raw GitHub URL as argument
-            string rawJson = GetRawJson(null);
+            string rawJson = GetRawJson("https://raw.githubusercontent.com/DeadNetOfficial/compact/master/bundles.json");
+            Bundle[] bundles = JsonConvert.DeserializeObject<Bundle[]>(rawJson);
+            foreach (Bundle bundle in bundles)
+            {
+                Canvas canvas = CreateBundleEntry(new Bundle()
+                {
+                    Name = bundle.Name,
+                    Description = bundle.Description,
+                    BannerUrl = bundle.BannerUrl,
+                    SoftwareList = bundle.SoftwareList,
+                    InstallerList = bundle.InstallerList
+                });
+
+                bundlePanel.Children.Add(canvas);
+            }
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

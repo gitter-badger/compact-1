@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Compact"
-        mc:Ignorable="d" Height="700" Width="1160" Loaded="OnWindowLoad" AllowsTransparency="True" WindowStyle="None" Background="#FFEEEEEE">
+        mc:Ignorable="d" Height="700" Width="1160" Loaded="OnWindowLoad" AllowsTransparency="True" WindowStyle="None" Background="#FFEEEEEE" WindowStartupLocation="CenterScreen">
     <Grid>
         <WrapPanel x:Name="bundlePanel" Margin="10,0,10,10" Height="635" VerticalAlignment="Bottom"/>
         <Canvas HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="1160" Background="#FF363636">

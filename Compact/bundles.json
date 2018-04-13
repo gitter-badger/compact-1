@@ -1,0 +1,16 @@
+﻿[
+  {
+    "name": "Test Bundle",
+    "description": "Test Description",
+    "banner_url": "",
+    "software": [
+      "Test Software 1",
+      "Test Software 2",
+      "Test Software 3"
+    ],
+
+    "installers": [
+      ""
+    ]
+  }
+]

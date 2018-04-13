@@ -1,12 +1,27 @@
 ﻿[
   {
-    "name": "Test Bundle",
-    "description": "Test Description",
+    "name": "General",
+    "description": "A selection of the most common programs, suitable for a fresh install.",
     "banner_url": "",
     "software": [
-      "Test Software 1",
-      "Test Software 2",
-      "Test Software 3"
+      "Chrome",
+      "Firefox",
+      "WinRAR"
+	  "Discord"
+	  "Teamspeak"
+	  "Skype"
+	  "WinDirStat"
+	  "TeamViewer 13"
+	  "Unchecky"
+	  "CCleaner"
+	  "VLC"
+	  "LibreOffice"
+	  "Speccy"
+	  "Notepad++"
+	  "Preme"
+	  "Keypirinha"
+	  "Recuva",
+	  "Java JRE"
     ],
 
     "installers": [

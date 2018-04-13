@@ -2,7 +2,7 @@
   {
     "name": "General",
     "description": "A selection of the most common programs, suitable for a fresh install.",
-    "banner_url": "",
+    "banner_url": "https://raw.githubusercontent.com/DeadNetOfficial/compact/master/img/banners/General-Bundle-Banner.png",
     "software": [
       "Chrome",
       "Firefox",

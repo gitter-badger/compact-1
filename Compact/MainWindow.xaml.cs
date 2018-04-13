@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
+using System.Net;
 
 namespace Compact
 {
@@ -11,6 +12,22 @@ namespace Compact
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private static string GetRawJson(string jsonUrl)
+        {
+            try
+            {
+                // TO-DO: Seperate threads
+                WebClient webClient = new WebClient();
+                string rawJson = webClient.DownloadString(jsonUrl);
+                return rawJson;
+            }
+            catch (Exception)
+            {
+                // TO-DO: Show error dialog
+                return null;
+            }
         }
 
         private Canvas CreateBundleEntry(BundleEntry entry)
@@ -48,7 +65,8 @@ namespace Compact
 
         private void OnWindowLoad(object sender, RoutedEventArgs e)
         {
-            // TO-DO: Load packages from JSON file
+            // TO-DO: Pass raw GitHub URL as argument
+            string rawJson = GetRawJson(null);
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

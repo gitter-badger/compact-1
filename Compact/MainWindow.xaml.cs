@@ -99,7 +99,7 @@ namespace Compact
                         detailsWindow.lstSoftware.Items.Add(itemCanvas);
                         detailsWindow.SoftwareList = bundle.SoftwareList.ToArray();
                         detailsWindow.txtDescription.Text = bundle.Description;
-                        detailsWindow.Title = "Bundle Details: " + bundle.Name + " Bundle";
+                        detailsWindow.Title = bundle.Name + " Bundle";
                     }
 
                     detailsWindow.ShowDialog();

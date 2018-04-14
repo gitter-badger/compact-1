@@ -76,20 +76,30 @@ namespace Compact
                 canvas.MouseLeftButtonDown += (o, ev) =>
                 {
                     var detailsWindow = new Windows.DetailsWindow();
-                    detailsWindow.bannerCanvas.Background = new ImageBrush((ImageSource)new ImageSourceConverter()
-                        .ConvertFromString(bundle.BannerUrl));
+                    try
+                    {
+                        detailsWindow.bannerCanvas.Background = new ImageBrush((ImageSource)new ImageSourceConverter()
+                                        .ConvertFromString(bundle.BannerUrl));
+                    }
+                    catch (Exception)
+                    {
+                        detailsWindow.bannerCanvas.Background = new SolidColorBrush(Color.FromRgb(38, 38, 38));
+                    }
 
                     foreach (SoftwareListItem item in bundle.SoftwareList)
                     {
                         Canvas itemCanvas = new Canvas()
                         {
-                            Height = 30
+                            Height = 30,
+                            ToolTip = item.Description
                         };
 
                         itemCanvas.Children.Add(new CheckBox() { Margin = new Thickness(0, 7.5, 0, 0), IsChecked = true, Tag = item });
                         itemCanvas.Children.Add(new Label() { Margin = new Thickness(17, 2, 0, 0), Content = item.Name });
                         detailsWindow.lstSoftware.Items.Add(itemCanvas);
                         detailsWindow.SoftwareList = bundle.SoftwareList.ToArray();
+                        detailsWindow.txtDescription.Text = bundle.Description;
+                        detailsWindow.Title = "Bundle Details: " + bundle.Name + " Bundle";
                     }
 
                     detailsWindow.ShowDialog();

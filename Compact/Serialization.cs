@@ -30,5 +30,8 @@ namespace Compact
 
         [JsonProperty("desc")]
         public string Description { get; set; }
+
+        [JsonProperty("filename")]
+        public string FileName { get; set; }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.IO;
+using System.Windows.Input;
 
 namespace Compact.Windows
 {
@@ -24,12 +23,16 @@ namespace Compact.Windows
             {
                 try
                 {
-                    foreach (CheckBox checkBox in canvas.Children)
+                    foreach (object obj in canvas.Children)
                     {
-                        if (checkBox.IsChecked.Value == true)
+                        if(obj.GetType() == typeof(CheckBox))
                         {
-                            SoftwareListItem queueItem = (SoftwareListItem)checkBox.Tag;
-                            SoftwareListQueue.Add(queueItem);
+                            CheckBox checkBox = (CheckBox)obj;
+                            if (checkBox.IsChecked.Value == true)
+                            {
+                                SoftwareListItem queueItem = (SoftwareListItem)checkBox.Tag;
+                                SoftwareListQueue.Add(queueItem);
+                            }
                         }
                     }
                 }
@@ -44,14 +47,64 @@ namespace Compact.Windows
             // Download all installers
             foreach (SoftwareListItem item in SoftwareListQueue)
             {
-                string dataFolder = Utilities.GetDataFolder();
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile(new Uri(item.Url), dataFolder);
+                Utilities.DownloadInstallerAsync(item);
             }
 
             // Clear the software queue and enable user input
             SoftwareListQueue.Clear();
             IsEnabled = true;
+        }
+
+        private enum SelectionState
+        {
+            Checked,
+            Unchecked
+        }
+
+        private void SetGeneralSelectionState(ListBox softwareList, SelectionState state)
+        {
+            foreach (Canvas canvas in softwareList.Items)
+            {
+                try
+                {
+                    foreach (object obj in canvas.Children)
+                    {
+                        if(obj.GetType() == typeof(CheckBox))
+                        {
+                            CheckBox checkBox = (CheckBox)obj;
+                            if (state == SelectionState.Checked)
+                            {
+                                checkBox.IsChecked = true;
+                            }
+                            else
+                            {
+                                checkBox.IsChecked = false;
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        private void OnClickSelectAll(object sender, RoutedEventArgs e)
+        {
+            SetGeneralSelectionState(lstSoftware, SelectionState.Checked);
+        }
+
+        private void OnClickDeselectAll(object sender, RoutedEventArgs e)
+        {
+            SetGeneralSelectionState(lstSoftware, SelectionState.Unchecked);
+        }
+
+        private void OnWindowKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Escape)
+            {
+                Close();
+            }
         }
     }
 }

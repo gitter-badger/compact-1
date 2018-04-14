@@ -111,7 +111,7 @@
 
       {
         "name": "Java JRE",
-        "url": "http://sdlc-esd.oracle.com/ESD6/JSCDL/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jre-8u161-windows-x64.exe?GroupName=JSC&FilePath=/ESD6/JSCDL/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jre-8u161-windows-x64.exe&BHost=javadl.sun.com&File=jre-8u161-windows-x64.exe&AuthParam=1523670086_859d84f5b24d4e328b1ec5f3013f9c2c&ext=.exe",
+        "url": "http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jre-8u162-windows-x64.exe",
         "desc": "Java JRE is a program that allows you to run Java programs.",
         "filename": "java-jre.exe"
       }

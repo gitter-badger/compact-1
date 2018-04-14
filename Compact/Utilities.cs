@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +23,31 @@ namespace Compact
             }
 
             return folderPath;
+        }
+
+        public static string GetTempFolder()
+        {
+            string folderPath = Path.Combine(GetDataFolder(), "Temp");
+
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+            }
+            catch (Exception)
+            {
+            }
+
+            return folderPath;
+        }
+
+        public static async void DownloadInstallerAsync(SoftwareListItem softwareListItem)
+        {
+            WebClient webClient = new WebClient();
+            await Task.Run(() =>
+            {
+                webClient.DownloadFile(new Uri(softwareListItem.Url), Path.Combine(GetTempFolder(), softwareListItem.FileName));
+            });
         }
     }
 }

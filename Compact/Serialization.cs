@@ -17,9 +17,15 @@ namespace Compact
         public string BannerUrl { get; set; }
 
         [JsonProperty("software")]
-        public string[] SoftwareList { get; set; }
+        public List<SoftwareListItem> SoftwareList { get; set; }
+    }
 
-        [JsonProperty("installers")]
-        public string[] InstallerList { get; set; }
+    public class SoftwareListItem
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 }

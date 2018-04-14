@@ -70,12 +70,36 @@ namespace Compact
                     Name = bundle.Name,
                     Description = bundle.Description,
                     BannerUrl = bundle.BannerUrl,
-                    SoftwareList = bundle.SoftwareList,
-                    InstallerList = bundle.InstallerList
+                    SoftwareList = bundle.SoftwareList
                 });
 
+                canvas.MouseLeftButtonDown += (o, ev) =>
+                {
+                    var detailsWindow = new Windows.DetailsWindow();
+                    detailsWindow.bannerCanvas.Background = new ImageBrush((ImageSource)new ImageSourceConverter()
+                        .ConvertFromString(bundle.BannerUrl));
+
+                    foreach (SoftwareListItem item in bundle.SoftwareList)
+                    {
+                        Canvas itemCanvas = new Canvas()
+                        {
+                            Height = 30
+                        };
+
+                        itemCanvas.Children.Add(new CheckBox() { Margin = new Thickness(0, 7.5, 0, 0), IsChecked = true, Tag = item.Url });
+                        itemCanvas.Children.Add(new Label() { Margin = new Thickness(17, 2, 0, 0), Content = item.Name });
+                        detailsWindow.lstSoftware.Items.Add(itemCanvas);
+                        detailsWindow.btnInstall.MouseLeftButtonDown += (obj, evn) =>
+                        {
+                            
+                        };
+                    }
+
+                    detailsWindow.ShowDialog();
+                };
+
                 bundlePanel.Children.Add(canvas);
-            }
+            }            
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

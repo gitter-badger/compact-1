@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Windows\DetailsWindow.xaml.cs">

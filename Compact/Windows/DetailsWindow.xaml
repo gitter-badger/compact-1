@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Compact.Windows"
         mc:Ignorable="d"
-        Title="Bundle Details" Height="570" Width="360" WindowStartupLocation="CenterScreen" MinWidth="360" MinHeight="570" Background="#FFF1F1F1" KeyDown="OnWindowKeyDown">
+        Title="Bundle Details" Height="570" Width="360" WindowStartupLocation="CenterScreen" MinWidth="360" MinHeight="570" Background="#FFF1F1F1" KeyDown="OnWindowKeyDown" ResizeMode="CanResizeWithGrip" Closing="OnWindowClosing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -13,7 +13,7 @@
         <Canvas x:Name="bannerCanvas" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="350" Background="#FF262626"/>
         <Label Content="This bundle includes:" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" FontSize="24"/>
         <ListBox x:Name="lstSoftware" Margin="20,192,20,102" BorderBrush="#FFC7C7C7"/>
-        <Button x:Name="btnInstall" Content="Install this bundle" Margin="0,0,20,27" Click="OnClickInstall" Height="31" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128"/>
+        <Button x:Name="btnInstall" Content="Install this bundle" Margin="0,0,20,27" Click="OnClickInstall" Height="31" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128" IsDefault="True"/>
         <ProgressBar x:Name="progressBar" Margin="20,0,164,27" Height="31" VerticalAlignment="Bottom"/>
         <Label x:Name="lblStatus" Content="Ready." Margin="20,0,164,11" VerticalAlignment="Bottom" Foreground="#FF444444" Padding="0"/>
         <TextBlock x:Name="txtDescription" Margin="10,95,10,394" TextWrapping="Wrap" Text="Description" Padding="5" Foreground="#FF4B4B4B"/>

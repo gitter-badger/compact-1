@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,10 +15,11 @@ namespace Compact.Windows
             InitializeComponent();
         }
 
+        public bool Closeable { get; set; } = true;
         public SoftwareListItem[] SoftwareList { get; set; }
         public List<SoftwareListItem> SoftwareListQueue { get; set; } = new List<SoftwareListItem>();
 
-        private void OnClickInstall(object sender, RoutedEventArgs e)
+        private async void OnClickInstall(object sender, RoutedEventArgs e)
         {
             // Iterates through all selected values
             foreach (Canvas canvas in lstSoftware.Items)
@@ -43,16 +46,57 @@ namespace Compact.Windows
 
             // Disable all user input
             IsEnabled = false;
-
+            Closeable = false;
+            
             // Download all installers
-            foreach (SoftwareListItem item in SoftwareListQueue)
+            var progress = new Progress<BundleProgress>();
+            progress.ProgressChanged += (o, ev) =>
             {
-                Utilities.DownloadInstallerAsync(item);
+                progressBar.Value = ev.ProgressPercentage;
+                lblStatus.Content = ev.ProgressPercentage + "% downloaded.";
+            };
+
+            await Utilities.DownloadInstallersAsync(SoftwareListQueue.ToArray(), progress);
+
+            // Clear the software queue and progress values
+            SoftwareListQueue.Clear();
+            progressBar.Value = 0;
+
+            // Install all downloaded software
+            try
+            {
+                List<string> installerFiles = new List<string>();
+                installerFiles.AddRange(Directory.GetFiles(Utilities.GetTempFolder()));
+                foreach (string item in installerFiles)
+                {
+                    lblStatus.Content = "Installing " + Path.GetFileName(item) + "...";
+                    Process process = new Process()
+                    {
+                        StartInfo = new ProcessStartInfo(item)
+                    };
+
+                    process.Start();
+                    process.WaitForExit();
+                }
+            }
+            catch (Exception)
+            {
             }
 
-            // Clear the software queue and enable user input
-            SoftwareListQueue.Clear();
+            lblStatus.Content = "Cleaning up temporary files...";
+            foreach (string item in Directory.GetFiles(Utilities.GetTempFolder()))
+            {
+                File.Delete(item);
+            }
+
+            MessageBox.Show("This bundle has been installed successfully on your computer!",
+                "Successfully installed",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+
             IsEnabled = true;
+            Closeable = true;
+            Close();
         }
 
         private enum SelectionState
@@ -102,9 +146,12 @@ namespace Compact.Windows
         private void OnWindowKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Escape)
-            {
                 Close();
-            }
+        }
+
+        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = !Closeable;
         }
     }
 }

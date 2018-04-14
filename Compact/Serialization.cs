@@ -27,5 +27,8 @@ namespace Compact
 
         [JsonProperty("url")]
         public string Url { get; set; }
+
+        [JsonProperty("desc")]
+        public string Description { get; set; }
     }
 }

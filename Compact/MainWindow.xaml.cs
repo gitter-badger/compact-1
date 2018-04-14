@@ -86,13 +86,10 @@ namespace Compact
                             Height = 30
                         };
 
-                        itemCanvas.Children.Add(new CheckBox() { Margin = new Thickness(0, 7.5, 0, 0), IsChecked = true, Tag = item.Url });
+                        itemCanvas.Children.Add(new CheckBox() { Margin = new Thickness(0, 7.5, 0, 0), IsChecked = true, Tag = item });
                         itemCanvas.Children.Add(new Label() { Margin = new Thickness(17, 2, 0, 0), Content = item.Name });
                         detailsWindow.lstSoftware.Items.Add(itemCanvas);
-                        detailsWindow.btnInstall.MouseLeftButtonDown += (obj, evn) =>
-                        {
-                            
-                        };
+                        detailsWindow.SoftwareList = bundle.SoftwareList.ToArray();
                     }
 
                     detailsWindow.ShowDialog();

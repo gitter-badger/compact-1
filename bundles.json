@@ -107,13 +107,6 @@
         "url": "https://download.ccleaner.com/rcsetup153.exe",
         "desc": "Recuva is an undeletion program for Windows. It is able to undelete files that have been marked as deleted and recover corrupted hard and USB drives.",
         "filename": "recuva.exe"
-      },
-
-      {
-        "name": "Java JRE",
-        "url": "http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jre-8u162-windows-x64.exe",
-        "desc": "Java JRE is a program that allows you to run Java programs.",
-        "filename": "java-jre.exe"
       }
     ]
   }

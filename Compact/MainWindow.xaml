@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:Compact"
         mc:Ignorable="d" Height="700" Width="1160" Loaded="OnWindowLoad" AllowsTransparency="True" WindowStyle="None" Background="#FFEEEEEE" WindowStartupLocation="CenterScreen">
     <Grid>
-        <WrapPanel x:Name="bundlePanel" Margin="10,0,10,10" Height="635" VerticalAlignment="Bottom"/>
         <Canvas HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="1160" Background="#FF363636">
             <Label Content="Compact" Canvas.Left="11" Canvas.Top="5" Foreground="White" FontSize="18"/>
             <Button x:Name="btnExit" Content="X" Canvas.Left="1115" Width="46" Height="46" BorderBrush="{x:Null}" Foreground="#FFA8A8A8" Background="#FF292929" Canvas.Top="-1" FontSize="16" Click="btnExit_Click"/>
         </Canvas>
+        <Grid x:Name="mainGrid" Margin="10,62,10,10">
+            <WrapPanel x:Name="bundlePanel" Height="628" VerticalAlignment="Bottom"/>
+        </Grid>
     </Grid>
 </Window>

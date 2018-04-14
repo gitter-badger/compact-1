@@ -109,5 +109,68 @@
         "filename": "recuva.exe"
       }
     ]
+  },
+
+  {
+    "name": "Gaming",
+    "description": "A bundle for optimizing gameplay and gaming experience.",
+    "banner_url": "",
+    "software": [
+      {
+        "name": "Steam",
+        "url": "https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe",
+        "desc": "Steam is a digital distribution platform which offers digital rights management, multiplayer gaming, video streaming and social networking services.",
+        "filename": "steam.exe"
+      },
+
+      {
+        "name": "GOG Galaxy",
+        "url": "http://static.gog.com/download/d3/stable/Setup_Downloader_3.6.0_stable.exe",
+        "desc": "The gaming Client designed for a convenient purchasing, playing and updating games, as well as an online play between gaming platforms.",
+        "filename": "gog-galaxy.exe"
+      },
+
+      {
+        "name": "Razer Cortex",
+        "url": "http://dl.razerzone.com/drivers/GameBooster/RazerCortexSetup_8.5.11.584.exe",
+        "desc": "A program for gaming optimization and easy recording.",
+        "filename": "razer-cortex.exe"
+      },
+
+      {
+        "name": "NVIDIA GeForce Experience",
+        "url": "https://us.download.nvidia.com/GFE/GFEClient/3.13.1.30/GeForce_Experience_v3.13.1.30.exe",
+        "desc": "GeForce Experience automatically notifies you of driver updates and installs with one click, ensuring you always have the latest NVIDIA drivers and PC game settings.",
+        "filename": "geforce-experience.exe"
+      },
+
+      {
+        "name": "EVGA Precision",
+        "url": "https://files01.tchspt.com/temp/EVGA_PrecisionX_OC_Setup_v6.2.5.exe",
+        "desc": "A GPU overclocking tool made by EVGA.",
+        "filename": "msi-afterburner.exe"
+      },
+
+      {
+        "name": "CPU-Z",
+        "url": "https://www.cpuid.com/downloads/cpu-z/cpu-z_1.84-en.exe",
+        "desc": "CPU-Z is a freeware system profiling and monitoring application for Microsoft Windows that detects the CPU, RAM, motherboard chipset, and other hardware features of a modern personal computer.",
+        "filename": "cpu-z.exe"
+      },
+
+      {
+        "name": "HWMonitor",
+        "url": "https://www.cpuid.com/downloads/hwmonitor-pro/hwmonitor-pro_1.33.exe",
+        "desc": "HWMonitor is a hardware monitoring program that reads PC systems main health sensors, voltages, temperatures and fan speed.",
+        "filename": "hwmonitor.exe"
+      },
+
+      {
+        "name": "MSI Kombustor",
+        "url": "http://www.geeks3d.com/downloads/2018/MSI_Kombustor_2017_Setup_v0.6.2.0.exe",
+        "desc": "Kombustor is an exclusive burn-in benchmarking tool based on the well-known Furmark software. This program is specifically designed to push your graphics card to the limits to test stability and thermal performance.",
+        "filename": "msi-kombustor.exe"
+      }
+    ]
   }
 ]

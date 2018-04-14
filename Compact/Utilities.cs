@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Compact
@@ -41,12 +39,22 @@ namespace Compact
             return folderPath;
         }
 
-        public static async void DownloadInstallerAsync(SoftwareListItem softwareListItem)
+        public static async Task DownloadInstallersAsync(SoftwareListItem[] softwareItems, IProgress<BundleProgress> progress)
         {
             WebClient webClient = new WebClient();
             await Task.Run(() =>
             {
-                webClient.DownloadFile(new Uri(softwareListItem.Url), Path.Combine(GetTempFolder(), softwareListItem.FileName));
+                int completeCount = 0;
+                foreach (SoftwareListItem item in softwareItems)
+                {
+                    webClient.DownloadFile(new Uri(item.Url), Path.Combine(GetTempFolder(), item.FileName));
+                    completeCount++;
+                    progress.Report(new BundleProgress()
+                    {
+                        ProgressPercentage = (int)Math.Round((double)(100 * completeCount) / softwareItems.Length),
+                        CurrentItem = item
+                    });
+                }
             });
         }
     }
